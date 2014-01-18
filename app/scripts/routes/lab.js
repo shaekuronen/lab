@@ -5,7 +5,7 @@ lab.Routers = lab.Routers || {};
 (function () {
     'use strict';
 
-    lab.Routers.BlogRouter = Backbone.Router.extend({
+    lab.Routers.LabRouter = Backbone.Router.extend({
 
     });
 
