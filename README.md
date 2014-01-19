@@ -1,4 +1,4 @@
 lab
 ===
 
-two beakers and a microscope
+polyglot two beakers and a microscope
