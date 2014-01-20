@@ -8,6 +8,9 @@ lab.Models = lab.Models || {};
   lab.Models.ExperimentModel = Backbone.Model.extend({
 
     defaults: {
+      id: '',
+      title: '',
+      description: '',
       published: false
     },
 
@@ -21,7 +24,7 @@ lab.Models = lab.Models || {};
           console.log(error);
         });
       })
-    }
+    },
 
     validate: function(attributes) {
 
@@ -35,9 +38,7 @@ lab.Models = lab.Models || {};
         return 'Please enter a description for the experiment';
       }
 
-    },
-
-
+    }
 
   });
 

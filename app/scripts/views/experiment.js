@@ -3,25 +3,28 @@
 lab.Views = lab.Views || {};
 
 (function () {
-    'use strict';
 
-    lab.Views.ExperimentView = Backbone.View.extend({
+  'use strict';
 
-        template: JST['app/scripts/templates/experiment.ejs'],
+  lab.Views.ExperimentView = Backbone.View.extend({
 
-        render: function() {
-          this.$el.html(template, this.model.toJSON());
-          return this;
-        },
+    el: '#lb-experiment-container',
 
-        events: {
-          'click #test-button': 'test_button_notifier'
-        },
+    template: JST['app/scripts/templates/experiment.ejs'],
 
-        test_button_notifier = function() {
-          console.log('Test button clicked');
-        }
+    render: function() {
+      this.$el.html(template, this.model.toJSON());
+      return this;
+    },
 
-    });
+    events: {
+      'click #test-button': 'test_button_notifier'
+    },
+
+    test_button_notifier: function() {
+      console.log('Test button clicked');
+    }
+
+  });
 
 })();
