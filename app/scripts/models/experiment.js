@@ -10,7 +10,7 @@ lab.Models = lab.Models || {};
     defaults: {
       id: '',
       title: '',
-      description: '',
+      description: 'some description',
       published: false
     },
 
@@ -28,7 +28,7 @@ lab.Models = lab.Models || {};
 
     validate: function(attributes) {
 
-      // require a title for the experiement
+      // require a title for the experiment
       if(attributes.title === undefined) {
         return 'Please enter a title for the experiment';
       }
@@ -41,5 +41,7 @@ lab.Models = lab.Models || {};
     }
 
   });
+
+  lab.experiment_model = new lab.Models.ExperimentModel();
 
 })();

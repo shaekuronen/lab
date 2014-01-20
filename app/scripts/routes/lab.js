@@ -2,25 +2,46 @@
 
 lab.Routers = lab.Routers || {};
 
-(function () {
+(function() {
 
   'use strict';
 
   lab.Routers.LabRouter = Backbone.Router.extend({
 
     routes: {
-      'experiment/:id': 'show_experiment'
+      'experiments': 'request_experiments',
+      'experiment/:id': 'request_experiment'
     },
 
-    show_experiment: function() {
+    request_experiment: function(id) {
+
+      console.log('experiment with id ' + id + ' was requested');
+
+      this.trigger('experiment_requested', id);
+
+    },
+
+    request_experiments: function() {
+
+      console.log('experiments collection should be rendered');
 
     }
 
-
   });
 
+  // create a router instance
+  lab.router = new lab.Routers.LabRouter();
+
+
+$(document).ready(function () {
+
+  // start monitoring hashchange events
   Backbone.history.start();
 
+});
+
 })();
+
+
 
 
