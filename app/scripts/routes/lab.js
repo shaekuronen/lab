@@ -17,7 +17,9 @@ lab.Routers = lab.Routers || {};
 
       console.log('experiment with id ' + id + ' was requested');
 
-      this.trigger('experiment_requested', id);
+      // this.trigger('experiment_requested', id);
+
+      lab.experiment_model.set({requested: true});
 
     },
 
