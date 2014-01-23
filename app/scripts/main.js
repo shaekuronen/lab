@@ -12,6 +12,9 @@ window.lab = {
   }
 };
 
+// extend lab object with Backbone Events so that lab.trigger will work globally
+_.extend(lab, Backbone.Events);
+
 $(document).ready(function () {
   'use strict';
   lab.init();

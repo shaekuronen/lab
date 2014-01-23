@@ -11,7 +11,6 @@ lab.Models = lab.Models || {};
       id: '',
       title: '',
       description: 'some description',
-      requested: false,
       published: false
     },
 

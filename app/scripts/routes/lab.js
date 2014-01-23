@@ -9,23 +9,21 @@ lab.Routers = lab.Routers || {};
   lab.Routers.LabRouter = Backbone.Router.extend({
 
     routes: {
-      'experiments': 'request_experiments',
-      'experiment/:id': 'request_experiment'
+      'experiments': 'experiments_url_event',
+      'experiment/:id': 'experiment_url_event'
     },
 
-    request_experiment: function(id) {
+    experiment_url_event: function(id) {
 
-      console.log('experiment with id ' + id + ' was requested');
+      console.log('experiment url event with id ' + id + ' happened');
 
-      // this.trigger('experiment_requested', id);
-
-      lab.experiment_model.set({requested: true});
+      lab.trigger('experiment_url_event', id);
 
     },
 
-    request_experiments: function() {
+    experiments_url_event: function() {
 
-      console.log('experiments collection should be rendered');
+      console.log('experiments url event happened');
 
     }
 
