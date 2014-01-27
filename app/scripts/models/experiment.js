@@ -11,7 +11,8 @@ lab.Models = lab.Models || {};
       id: '',
       title: '',
       description: 'some description',
-      published: false
+      published: false,
+      html: ''
     },
 
     initialize: function() {
@@ -41,7 +42,5 @@ lab.Models = lab.Models || {};
     }
 
   });
-
-  lab.experiment_model = new lab.Models.ExperimentModel();
 
 })();

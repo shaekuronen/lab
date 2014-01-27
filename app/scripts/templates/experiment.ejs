@@ -4,72 +4,17 @@
 
   <!-- copy -->
   <div id="lb-experiment-copy">
-    <h3>Instagram API Query</h3>
-    <p>Unauthenticated query to the Instagram API.  Returned JSON is dynamically added to the page.</p>
+    <h3><%- title %></h3>
+    <p><%- description %></p>
   </div>
   <!-- end copy -->
 
   <!-- display code -->
-  <div id="lb-experiment-display-code"></div>
+  <pre id="lb-experiment-display-code"><%- html %></pre>
   <!-- end display code -->
 
   <!-- live code -->
-  <div id="lb-experiment-live-code">
-
-    <ul id="instagram-container"></ul>
-
-    <script>
-      (function($) {
-
-        var get_json_callback,
-            instagram_json,
-            url;
-
-        url = 'https://api.instagram.com/v1/tags/staffordshire/media/recent?client_id=218a8f30a6924492b7ffdbbcb08f72c5&callback=?';
-
-        // callback to execute when json request completes
-        get_json_callback = function(returned_json) {
-
-          var count = returned_json.data.length,
-              instagram_slideshow_items = '';
-
-          $.each(returned_json.data, function(key, current_item) {
-
-            // build the html for instagram item
-            var instagram_item = '<li>';
-
-            instagram_item += '<a target="_blank" href="' + current_item.link + '">';
-
-            instagram_item += '<img src="'+ current_item.images.low_resolution.url + '" width="150" heigh="150">';
-
-            instagram_item += '</a>';
-
-            instagram_item += '</li>';
-            // end build the html for instagram item
-
-            // add item to instagram slideshow fragment
-            instagram_slideshow_items += instagram_item;
-
-            // if this is the last item -- basically a callback
-            if (key === (count - 1) ) {
-
-              // add instagram items to page
-              $('#instagram-container').append(instagram_slideshow_items);
-
-            }
-
-          });
-
-        };
-        // callback to execute when json request completes
-
-        // query instagram api and get json
-        instagram_json = $.getJSON(url, get_json_callback);
-
-      }(jQuery));
-    </script>
-
-  </div>
+  <div id="lb-experiment-live-code"><%= html %></div>
   <!-- end live code -->
 
   <button id="test-button">Test Button</button>
