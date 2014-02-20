@@ -47,6 +47,44 @@
 
   </div>
 
+  <!-- request data -->
+  <script>
+  // declare a global app object
+  window.lab = window.lab || {};
+
+  function loadXMLDoc() {
+    var xmlhttp;
+
+    if (window.XMLHttpRequest) {
+
+      console.log('there is a window.XMLHttpRequest');
+      xmlhttp = new XMLHttpRequest();
+
+    } else {
+
+      console.log('there is NO window.XMLHttpRequest');
+      xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+
+    }
+
+    xmlhttp.onreadystatechange = function() {
+
+      if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+        // document.getElementById("lb-experiment-container").innerHTML = xmlhttp.responseText;
+        lab.data = xmlhttp.responseText;
+      }
+
+    }
+
+    xmlhttp.open("GET", "https://api.github.com/users/shaekuronen/gists", true);
+    xmlhttp.send();
+
+  }
+
+  loadXMLDoc();
+  </script>
+  <!-- end request data -->
+
   <!-- build:js scripts/vendor.js -->
   <script src="bower_components/jquery/jquery.js"></script>
   <script src="bower_components/underscore/underscore.js"></script>
