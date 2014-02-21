@@ -51,37 +51,41 @@
   <script>
   // declare a global app object
   window.lab = window.lab || {};
+    lab.xmlhttp = lab.xmlhttp || {};
+    lab.the_data = lab.the_data || {};
 
-  function loadXMLDoc() {
-    var xmlhttp;
+  function ajax_request() {
 
     if (window.XMLHttpRequest) {
 
       console.log('there is a window.XMLHttpRequest');
-      xmlhttp = new XMLHttpRequest();
+      lab.xmlhttp = new XMLHttpRequest();
 
     } else {
 
       console.log('there is NO window.XMLHttpRequest');
-      xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+      lab.xmlhttpp = new ActiveXObject("Microsoft.XMLHTTP");
 
     }
 
-    xmlhttp.onreadystatechange = function() {
+    lab.xmlhttp.onreadystatechange = function() {
 
-      if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        // document.getElementById("lb-experiment-container").innerHTML = xmlhttp.responseText;
-        lab.data = xmlhttp.responseText;
+      console.log('lab.xmlhttp.onreadystatechange executed');
+
+      if (lab.xmlhttp.readyState == 4 && lab.xmlhttp.status == 200) {
+        lab.the_data = lab.xmlhttp.responseText;
+      } else {
+        // console.log('READYSTATE is not 4');
       }
 
     }
 
-    xmlhttp.open("GET", "https://api.github.com/users/shaekuronen/gists", true);
-    xmlhttp.send();
+    lab.xmlhttp.open("GET", "https://api.github.com/users/shaekuronen/gists", true);
+    lab.xmlhttp.send();
 
   }
 
-  loadXMLDoc();
+  ajax_request();
   </script>
   <!-- end request data -->
 

@@ -16,42 +16,50 @@ lab.Views = lab.Views || {};
         // associate the collection with the view
         this.collection = lab.experiments_collection;
 
-        console.log(Object.keys(this.collection.models));
-
-        console.log('experiments view initialized and its collection is ' + JSON.stringify(this.collection));
-
-        // lab.on('collection_ajax_request_success_event', this.render, this);
-
-
-
         // when the collection ajax request finishes, render view
         // this.collection.on('sync', this.render, this);
 
         // when the experiments url event happens, render view
-        this.collection.listenTo(lab.router, 'route:experiments', this.render);
+        // this.listenTo(lab.router, 'experiments_url_event', this.render);
+        lab.on('experiments_url_event', this.is_data_available, this);
+
+      },
+
+      is_data_available: function() {
+
+        console.log('experiments_view_this is ' + _.keys(this));
+
+        console.log('the lab data is ' + lab.the_data);
+
+        var experiments_view_this = this;
+
+        if ( (typeof lab.the_data !== 'undefined') && (lab.the_data.length > 0) ) {
+
+          experiments_view_this.render();
+
+        } else {
+
+          console.log('there is NO data');
+
+          // https://developer.mozilla.org/es/docs/XMLHttpRequest/Usar_XMLHttpRequest
+          lab.xmlhttp.addEventListener("load", experiments_view_this.render, false);
+
+        }
 
       },
 
       render: function() {
 
-        // if there is data
-        if (_.keys(lab.data.attributes).length) {
+          console.log('there is data');
+          console.log(lab.the_data);
 
-          console.log('experiments view render called AND lab.data has data');
+          lab.experiments_collection.reset(lab.the_data);
 
           this.$el.html(this.template(this.collection));
 
           return this;
 
-        // if there is not data, listen for data complete event
-        } else {
-
-          // extended lab object with Backbone.Events in main.js
-          lab.data.on('')
-
-        }
-
-      };
+      }
 
     });
 

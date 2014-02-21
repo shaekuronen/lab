@@ -25,6 +25,8 @@ lab.Routers = lab.Routers || {};
 
       console.log('experiments url event happened');
 
+      lab.trigger('experiments_url_event');
+
       // var fetch_options = {
       //   success: function(collection) {
       //     console.log('the collection is ' + Object.keys(collection));
